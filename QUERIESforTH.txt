@@ -1,0 +1,1 @@
+DeviceName: FQDN ; EventType: DeviceLogonEvents
