@@ -55,6 +55,7 @@ DeviceProcessEvents
 | where ProcessCommandLine contains "powershell.exe"
 | where ProcessCommandLine contains "Get-Credential" or ProcessCommandLine contains "Get-Clipboard"
 ------------------------------------------
+
 ########## File creation or deletion search ###########
 
 ------------------------------------------
