@@ -10,8 +10,10 @@ DeviceFileEvents | where SHA256 == tolower("E3B0C44298FC1C149AFBF4C8996FB92427AE
 DeviceNetworkEvents
 | where RemoteIPType == "Public" and RemotePort > 1024 and DeviceName contains "12207-02599"
 ------------------------------------------
-########## File creation or deletion search ###########
-
+########## search if anyone used clip or Get-Clipboard command ###########
+DeviceProcessEvents
+| where ProcessCommandLine contains "clip.exe" or ProcessCommandLine contains "Get-Clipboard"
+| project Timestamp, DeviceName, ProcessCommandLine, InitiatingProcessAccountName
 ------------------------------------------
 ########## File creation or deletion search ###########
 
