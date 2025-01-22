@@ -43,11 +43,17 @@ DeviceProcessEvents
 | project Timestamp, DeviceName, AccountName, InitiatingProcessCommandLine
 
 ------------------------------------------
-########## File creation or deletion search ###########
 
+########## suspicious use of rundll32 for credential access ###########
+DeviceProcessEvents
+| where ProcessCommandLine contains "rundll32.exe"
+| where ProcessCommandLine contains "samcli.dll" or ProcessCommandLine contains "vaultcli.dll" 
 ------------------------------------------
-########## File creation or deletion search ###########
 
+########## suspicious PowerShell commands that may be related to credential harvesting ###########
+DeviceProcessEvents
+| where ProcessCommandLine contains "powershell.exe"
+| where ProcessCommandLine contains "Get-Credential" or ProcessCommandLine contains "Get-Clipboard"
 ------------------------------------------
 ########## File creation or deletion search ###########
 
