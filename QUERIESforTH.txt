@@ -35,7 +35,12 @@ DeviceNetworkEvents
 | project Timestamp, DeviceName, LocalPort, RemotePort, QueryValue, RemoteIP, Protocol
 
 ------------------------------------------
-########## File creation or deletion search ###########
+
+########## Credential Dump LSASS ###########
+DeviceProcessEvents
+| where ProcessCommandLine contains "lsass.exe"
+| where InitiatingProcessCommandLine contains "procdump" or InitiatingProcessCommandLine contains "mimikatz"
+| project Timestamp, DeviceName, AccountName, InitiatingProcessCommandLine
 
 ------------------------------------------
 ########## File creation or deletion search ###########
