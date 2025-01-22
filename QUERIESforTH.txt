@@ -1,1 +1,34 @@
-DeviceName: FQDN ; EventType: DeviceLogonEvents
+########## File creation or deletion search ###########
+DeviceFileEvents | where FileName == "procexp64.exe"  and DeviceName contains "windows-33" // or == "windows-33115server.domain.com" 
+// Devicename with out * symbol
+------------------------------------------
+########## File creation or deletion search ###########
+
+------------------------------------------
+########## File creation or deletion search ###########
+
+------------------------------------------
+########## File creation or deletion search ###########
+
+------------------------------------------
+########## File creation or deletion search ###########
+
+------------------------------------------
+########## File creation or deletion search ###########
+
+------------------------------------------
+########## File creation or deletion search ###########
+
+------------------------------------------
+########## File creation or deletion search ###########
+
+------------------------------------------
+########## File creation or deletion search ###########
+
+------------------------------------------
+########## File creation or deletion search ###########
+
+------------------------------------------
+########## File creation or deletion search ###########
+
+------------------------------------------
