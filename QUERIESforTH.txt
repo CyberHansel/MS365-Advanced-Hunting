@@ -1,21 +1,26 @@
+
 ########## Search File creation or deletion ###########
 DeviceFileEvents | where FileName == "procexp64.exe"  and DeviceName contains "windows-33" // or == "windows-33115server.domain.com" 
 // Devicename with out * symbol
 ------------------------------------------
+
 ########## Search for file SHA256 ###########
 DeviceFileEvents | where SHA256 == tolower("E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855") and DeviceName contains "windows-33" // or == "windows-33115server.domain.com"
 // Hash value must be in lowercase or hunt wont show results
 ------------------------------------------
+
 ########## outbound traffic to public IPs on non-standard ports ###########
 DeviceNetworkEvents
 | where RemoteIPType == "Public" and RemotePort > 1024 and DeviceName contains "12207-02599"
 ------------------------------------------
+
 ########## search if anyone used clip or Get-Clipboard command ###########
 DeviceProcessEvents
 | where ProcessCommandLine contains "clip.exe" or ProcessCommandLine contains "Get-Clipboard"
 | project Timestamp, DeviceName, ProcessCommandLine, InitiatingProcessAccountName
 ------------------------------------------
-########## File creation or deletion search ###########
+
+##########  ###########
 
 ------------------------------------------
 ########## File creation or deletion search ###########
