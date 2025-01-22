@@ -20,7 +20,19 @@ DeviceProcessEvents
 | project Timestamp, DeviceName, ProcessCommandLine, InitiatingProcessAccountName
 ------------------------------------------
 
-##########  ###########
+########## Search for DNS requests ###########
+DeviceNetworkEvents
+| where RemotePort == 53 and not (RemoteIP contains ".com" or RemoteIP contains ".org")
+| extend QueryValue = extractjson("$.query", AdditionalFields)
+| project Timestamp, DeviceName, LocalPort, RemotePort, QueryValue, RemoteIP, Protocol
+// QueryValue is "query" key value from the AdditionalFields column
+
+// Specific requests below:
+DeviceNetworkEvents
+| where RemotePort == 53 and not (RemoteIP contains ".com" or RemoteIP contains ".org")
+| extend QueryValue = extractjson("$.query", AdditionalFields)
+| where QueryValue contains "mydomainname"
+| project Timestamp, DeviceName, LocalPort, RemotePort, QueryValue, RemoteIP, Protocol
 
 ------------------------------------------
 ########## File creation or deletion search ###########
