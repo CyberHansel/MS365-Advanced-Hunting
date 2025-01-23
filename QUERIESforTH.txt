@@ -56,8 +56,13 @@ DeviceProcessEvents
 | where ProcessCommandLine contains "Get-Credential" or ProcessCommandLine contains "Get-Clipboard"
 ------------------------------------------
 
-########## File creation or deletion search ###########
-
+########## windows machine account $ logons  ###########
+//all windows machine account $ logons into different windows machine    
+let DCs = dynamic(["domaincontroller.domain.com"]);
+DeviceLogonEvents
+| where Protocol in ("NTLM", "Kerberos")
+| where AccountName endswith "$"
+| where DCs has replace_string(AccountName,"$","")
 ------------------------------------------
 ########## File creation or deletion search ###########
 
